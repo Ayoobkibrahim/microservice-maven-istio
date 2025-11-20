@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: profile-service-dr
+  namespace: microservices
+spec:
+  host: profile-service
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
