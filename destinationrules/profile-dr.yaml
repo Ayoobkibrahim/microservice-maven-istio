@@ -6,5 +6,5 @@ metadata:
 spec:
   host: profile-service
   trafficPolicy:
-    loadBalancer:
-      simple: ROUND_ROBIN
+    tls:
+      mode: ISTIO_MUTUAL
