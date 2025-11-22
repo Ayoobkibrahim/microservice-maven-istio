@@ -1,0 +1,55 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: microservices-vs
+  namespace: microservices
+spec:
+  hosts:
+    - "maven-micro.com"
+  gateways:
+    - microservices-gateway
+  http:
+    - name: orders-route
+      match:
+        - uri:
+            prefix: /orders
+      timeout: 3s
+      route:
+        - destination:
+            host: order-service
+            port:
+              number: 3003
+
+    - name: products-route
+      match:
+        - uri:
+            prefix: /products
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: connect-failure,refused-stream,503
+      route:
+        - destination:
+            host: product-service
+            port:
+              number: 3004
+
+    - name: profile-route
+      match:
+        - uri:
+            prefix: /profiles
+      route:
+        - destination:
+            host: profile-service
+            port:
+              number: 3002
+
+    - name: users-route
+      match:
+        - uri:
+            prefix: /users
+      route:
+        - destination:
+            host: user-service
+            port:
+              number: 3001

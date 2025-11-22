@@ -1,8 +1,8 @@
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
-  name: mesh-peer-auth
-  namespace: istio-system
+  name: strict-mtls
+  namespace: microservices
 spec:
   mtls:
     mode: STRICT

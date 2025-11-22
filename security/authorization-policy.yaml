@@ -4,6 +4,7 @@ metadata:
   name: allow-ingress-and-namespace
   namespace: microservices
 spec:
+  action: ALLOW
   rules:
     - from:
         - source:
