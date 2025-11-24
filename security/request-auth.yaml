@@ -9,4 +9,4 @@ spec:
       app: user-service
   jwtRules:
     - issuer: "auth.example.com"
-      jwksUri: "https://auth.example.com/.well-known/jwks.json"
+      jwksUri: "http://auth-service.microservices.svc.cluster.local/.well-known/jwks.json"
