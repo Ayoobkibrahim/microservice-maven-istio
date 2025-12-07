@@ -20,7 +20,7 @@ spec:
             host: auth-service
             port:
               number: 3000
-              
+
     - name: auth-jwks
       match:
         - uri:
@@ -32,9 +32,34 @@ spec:
             host: auth-service
             port:
               number: 3000
+    - name: users-route
+      match:
+        - uri:
+            prefix: /users/
+        - uri:
+            prefix: /users
+      route:
+        - destination:
+            host: user-service
+            port:
+              number: 3001
+
+    - name: profile-route
+      match:
+        - uri:
+            prefix: /profiles/
+        - uri:
+            prefix: /profiles
+      route:
+        - destination:
+            host: profile-service
+            port:
+              number: 3002
 
     - name: orders-route
       match:
+        - uri:
+            prefix: /orders/
         - uri:
             prefix: /orders
       timeout: 3s
@@ -47,6 +72,8 @@ spec:
     - name: products-route
       match:
         - uri:
+            prefix: /products/
+        - uri:
             prefix: /products
       retries:
         attempts: 3
@@ -58,25 +85,9 @@ spec:
             port:
               number: 3004
 
-    - name: profile-route
-      match:
-        - uri:
-            prefix: /profiles
-      route:
-        - destination:
-            host: profile-service
-            port:
-              number: 3002
+    
 
-    - name: users-route
-      match:
-        - uri:
-            prefix: /users
-      route:
-        - destination:
-            host: user-service
-            port:
-              number: 3001
+    
 
     
 
