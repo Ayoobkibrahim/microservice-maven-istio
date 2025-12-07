@@ -12,13 +12,15 @@ spec:
     - name: auth-route
       match:
         - uri:
-            prefix: /auth
+            prefix: /auth/
+      rewrite:
+        uri: /
       route:
         - destination:
             host: auth-service
             port:
               number: 3000
-              
+
     - name: orders-route
       match:
         - uri:
