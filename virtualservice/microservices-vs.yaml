@@ -12,7 +12,9 @@ spec:
     - name: auth-route
       match:
         - uri:
-            prefix: /auth/
+            prefix: /auth/login
+        - uri:
+            prefix: /auth/.well-known
       rewrite:
         uri: /
       route:
